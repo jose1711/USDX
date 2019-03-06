@@ -135,6 +135,7 @@ type
       Sorting:        integer;
       ShowScores:     integer;
       ShowWebScore:   integer;
+      Jokers:         integer;
       Debug:          integer;
 
       // Graphics
@@ -337,6 +338,8 @@ const
 
   IDebug:            array[0..1] of UTF8String  = ('Off', 'On');
 
+  IJokers:           array[0..6] of UTF8String  = ('0', '1', '3', '5', '10', '15', '30');
+
   IMaxFramerate:     array[0..11] of UTF8String  = ('10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '150', '200');
   IScreens:          array[0..1] of UTF8String  = ('1', '2');
   ISplit:            array[0..1] of UTF8String  = ('Off', 'On');
@@ -472,6 +475,8 @@ var
   IShowScoresTranslated:       array[0..2] of UTF8String  = ('Off', 'WhenExists', 'On');
 
   IDebugTranslated:            array[0..1] of UTF8String  = ('Off', 'On');
+
+  IJokersTranslated:           array[0..6] of UTF8String  = ('0', '1', '3', '5', '10', '15', '30');
 
   IFullScreenTranslated:       array[0..2] of UTF8String  = ('Off', 'On', 'Borderless');
   IVisualizerTranslated:       array[0..3] of UTF8String  = ('Off', 'WhenNoVideo', 'WhenNoVideoAndImage','On');
@@ -632,6 +637,14 @@ begin
   IShowScoresTranslated[0]            := ULanguage.Language.Translate('OPTION_VALUE_OFF');
   IShowScoresTranslated[1]            := ULanguage.Language.Translate('OPTION_VALUE_WHENEXIST');
   IShowScoresTranslated[2]            := ULanguage.Language.Translate('OPTION_VALUE_ON');
+
+  IJokersTranslated[0]                := ULanguage.Language.Translate('OPTION_JOKERS_0');
+  IJokersTranslated[1]                := ULanguage.Language.Translate('OPTION_JOKERS_1');
+  IJokersTranslated[2]                := ULanguage.Language.Translate('OPTION_JOKERS_3');
+  IJokersTranslated[3]                := ULanguage.Language.Translate('OPTION_JOKERS_5');
+  IJokersTranslated[4]                := ULanguage.Language.Translate('OPTION_JOKERS_10');
+  IJokersTranslated[5]                := ULanguage.Language.Translate('OPTION_JOKERS_15');
+  IJokersTranslated[6]                := ULanguage.Language.Translate('OPTION_JOKERS_30');
 
   IDebugTranslated[0]                 := ULanguage.Language.Translate('OPTION_VALUE_OFF');
   IDebugTranslated[1]                 := ULanguage.Language.Translate('OPTION_VALUE_ON');
@@ -1449,6 +1462,9 @@ begin
       ShowWebScore := 0;
   end;
 
+  // Number of Jokers in Party mode
+  Jokers := ReadArrayIndex(IJokers, IniFile, 'Game', 'Jokers', 3);
+
   // Debug
   Debug := ReadArrayIndex(IDebug, IniFile, 'Game', 'Debug', 0);
 
@@ -1740,6 +1756,9 @@ begin
 
     // Debug
     IniFile.WriteString('Game', 'Debug', IDebug[Debug]);
+
+    // Number of Jokers
+    IniFile.WriteString('Game', 'Jokers', IJokers[Jokers]);
 
     // MaxFramerate
     IniFile.WriteString('Graphics', 'MaxFramerate', IMaxFramerate[MaxFramerate]);

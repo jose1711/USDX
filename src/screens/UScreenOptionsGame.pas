@@ -163,9 +163,14 @@ begin
   Theme.OptionsGame.SelectShowScores.oneItemOnly := true;
   AddSelectSlide(Theme.OptionsGame.SelectShowScores,    Ini.ShowScores,    IShowScoresTranslated);
 
+  Theme.OptionsGame.SelectJokers.showArrows  := true;
+  Theme.OptionsGame.SelectJokers.oneItemOnly := true;
+  AddSelectSlide(Theme.OptionsGame.SelectJokers,      Ini.Jokers,      IJokersTranslated);
+
   Theme.OptionsGame.SelectDebug.showArrows  := true;
   Theme.OptionsGame.SelectDebug.oneItemOnly := true;
   AddSelectSlide(Theme.OptionsGame.SelectDebug,      Ini.Debug,      IDebugTranslated);
+
 
   AddButton(Theme.OptionsGame.ButtonExit);
   if (Length(Button[0].Text) = 0) then

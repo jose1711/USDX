@@ -855,6 +855,7 @@ type
     SelectSorting:      TThemeSelectSlide;
     SelectTabs:         TThemeSelectSlide;
     SelectShowScores:   TThemeSelectSlide;
+    SelectJokers:       TThemeSelectSlide;
     SelectDebug:        TThemeSelectSlide;
     ButtonExit:         TThemeButton;
   end;
@@ -2322,6 +2323,7 @@ begin
       ThemeLoadSelectSlide(OptionsGame.SelectSorting,    'OptionsGameSelectSlideSorting');
       ThemeLoadSelectSlide(OptionsGame.SelectTabs,       'OptionsGameSelectTabs');
       ThemeLoadSelectSlide(OptionsGame.SelectShowScores, 'OptionsGameSelectShowScores');
+      ThemeLoadSelectSlide(OptionsGame.SelectJokers,     'OptionsGameSelectJokers');
       ThemeLoadSelectSlide(OptionsGame.SelectDebug,      'OptionsGameSelectDebug');
       ThemeLoadButton(OptionsGame.ButtonExit,            'OptionsGameButtonExit');
 

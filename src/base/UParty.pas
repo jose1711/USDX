@@ -235,8 +235,6 @@ const
   { maximal amount of players for party mode }
   Party_Players_Max = 4;
 
-  { amount of jokers each team gets at the beginning of the game }
-  Party_Count_Jokers = 5;
 
   { to indicate that element (mode) should set randomly in ARounds array }
   Party_Round_Random = -1;
@@ -250,6 +248,8 @@ const
 
 var
   Party: TPartyGame;
+  { amount of jokers each team gets at the beginning of the game }
+  Party_Count_Jokers: integer;
 
 implementation
 
@@ -262,7 +262,8 @@ uses
   USong,
   USongs,
   UNote,
-  SysUtils;
+  SysUtils,
+  UIni;
 
 //-------------
 // Just the constructor
@@ -283,6 +284,7 @@ end;
 procedure TPartyGame.Clear;
   var
     I: Integer;
+
 begin
   bPartyGame := false; // no party game
   CurRound := low(integer);
@@ -546,7 +548,7 @@ begin
 
     Teams[Result].Name := Name;
     Teams[Result].Score := 0;
-    Teams[Result].JokersLeft := Party_Count_Jokers;
+    Teams[Result].JokersLeft := StrToInt(UIni.IJokers[Ini.Jokers]);
     Teams[Result].NextPlayer := -1;
   end;
 end;
